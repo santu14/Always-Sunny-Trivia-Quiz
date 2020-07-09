@@ -1,12 +1,30 @@
 $(document).ready(function () {
 
-    var questions = ["poopoo?", "peeppe?", "both?"];
-    var answers = [
-        { set: ["yes", "no", "maybe", "leave me alone"] },
-        { set: ["maybe", "eww gross", "yeehaw", "yes chef!"] },
-        { set: ["omg how u knowww", "how could you", "yeah i deeed datt", "shhhhh"] }
+    var questions = [
+        "In the episode 'Underage Drinking: A National Concern', what was the plan to protect the new underage patrons of Paddy's pub?",
+        "Which 'Sunny' character does Dennis hit with his car, halting the gang's trip to the strip club?",
+        "Who does Charlie first tell he has cancer?",
+        "Which one of the characters is not in season one?",
+        "What type of community service are Dennis, Mac, and Dee assigned to after throwing the bag of burning poo at the building next door?",
+        "What is the alias that Dennis comes up with for Charlie, when he and Mac are entering him into the underground fight tournament?"
     ];
-    var correctAnswer = ["yes", "yeehaw", "shhhhh"];
+    var choices = [
+        { set: ["No tequila", "No liquor", "3 drink maximum", "12pm curfew"] },
+        { set: ["Charlie", "Dee", "Mac", "Rickety Cricket"] },
+        { set: ["Dennis", "Dee", "Mac", "Frank"] },
+        { set: ["Carmen", "Liam McPoyle", "frank", "Artemis"] },
+        { set: ["coaching youth basketball", "Blood Drive", "Neighborhood Watch", "Volunteer at a soup kitchen"] },
+        { set: ["Baby Boy", "Clown Face", "Baby Face", "Clown Baby"] }
+    ];
+
+    var correctAnswer = [
+        "3 drink maximum",
+        "Charlie",
+        "Dennis",
+        "frank",
+        "coaching youth basketball",
+        "Clown Babay"
+    ];
 
 
     var display = $("#display");
@@ -28,6 +46,7 @@ $(document).ready(function () {
 
     function countdown() {
 
+
         var countdownTimer = setInterval(function () {
             if (!gameEnd) {
                 timeLeft--;
@@ -35,8 +54,13 @@ $(document).ready(function () {
             } else {
                 clearInterval(countdownTimer);
             };
+            if (timeLeft <= 0) {
+                clearInterval(countdownTimer);
+                renderFinalScene();
+            }
         }, 1000);
-        timer.text(timeLeft);
+        
+
     };
 
 
@@ -62,7 +86,7 @@ $(document).ready(function () {
 
     function buttonGenerator(answer) {
 
-        
+
 
         for (i = 0; i < answer.length; i++) {
             var btn = $("<button>").addClass("btn answer-button");
@@ -74,7 +98,7 @@ $(document).ready(function () {
         y++;
     };
 
-    function buttonLogic( correct) {
+    function buttonLogic(correct) {
 
         $(".answer-button").on("click", function () {
             console.log(this.innerHTML);
@@ -101,7 +125,7 @@ $(document).ready(function () {
     };
 
     function nextQuestion() {
-        
+
 
         if (x >= questions.length) {
             currentScore += timeLeft;
@@ -110,7 +134,7 @@ $(document).ready(function () {
 
         } else {
             renderQuestions(questions[x]);
-            buttonGenerator(answers[y].set);
+            buttonGenerator(choices[y].set);
         }
         console.log(currentScore);
     };
