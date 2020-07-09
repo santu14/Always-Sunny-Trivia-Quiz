@@ -62,7 +62,8 @@ $(document).ready(function () {
         
 
     };
-
+    
+    
 
 
     $(".start-btn").on("click", function () {
@@ -85,16 +86,13 @@ $(document).ready(function () {
 
 
     function buttonGenerator(answer) {
-
-
-
         for (i = 0; i < answer.length; i++) {
             var btn = $("<button>").addClass("btn answer-button");
             btn.text(answer[i]);
             display.append(btn);
             display.append("<br>");
         }
-        buttonLogic(correctAnswer);
+        buttonLogic(correctAnswer[y]);
         y++;
     };
 
@@ -105,9 +103,8 @@ $(document).ready(function () {
             feedback.stop();
             feedback.css({ opacity: "1" });
 
-            if (this.innerHTML === correct[0] ||
-                this.innerHTML === correct[1] ||
-                this.innerHTML === correct[2]) {
+            if (this.innerHTML === correct)
+                {
 
                 currentScore += 10;
                 feedback.append("<hr>");
@@ -126,11 +123,9 @@ $(document).ready(function () {
 
     function nextQuestion() {
 
-
         if (x >= questions.length) {
             currentScore += timeLeft;
             renderFinalScene();
-
 
         } else {
             renderQuestions(questions[x]);
@@ -152,6 +147,10 @@ $(document).ready(function () {
         saveHighScore();
     };
 
+    function storeHigScores(){
+        localStorage.setItem("highScores", JSON.stringify(highScores));
+    };
+
     function saveHighScore() {
 
         $("#submit-btn").on("click", function () {
@@ -164,9 +163,25 @@ $(document).ready(function () {
             highScores.push(items);
 
             console.log(highScores);
-
+            storeHigScores();
         });
 
     };
 
+    
+
+    function renderHighScores (){
+        var storedHigScores = JSON.parse(localStorage.getItem("highScores"));
+        if (storedHigScores !== null){
+            
+            highScores = storedHigScores;
+            for (i = 0; i < highScores.length; i++){
+                $("#display2").append("<h1>Initials: " + highScores[i].initials + " Score: " + highScores[i].score).addClass("stored-scores");
+                var savedScores = $(".stored-scores");
+                // savedScores.text("Initials: " + highScores[i].initials + "Score: " + highScores[i].score );
+            };
+        };
+    };
+    renderHighScores ();
+    console.log(highScores);
 });
