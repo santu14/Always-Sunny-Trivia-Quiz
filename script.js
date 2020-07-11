@@ -29,6 +29,7 @@ $(document).ready(function () {
 
     var display = $("#display");
     var feedback = $("#feedback");
+    var cardText = $(".card-text");
 
     var x = 0;
     var y = 0;
@@ -39,6 +40,8 @@ $(document).ready(function () {
         // {initials: []},
         // {scores: []}
     ];
+
+
 
     var timeLeft = 75;
     var timer = $("#timer");
@@ -75,9 +78,9 @@ $(document).ready(function () {
 
 
     function renderQuestions(question) {
-
         display.empty();
-        display.append("<h1>").text(question);
+
+        cardText.text(question);
         display.append("<br>");
         display.append("<hr>");
         x++;
@@ -87,10 +90,13 @@ $(document).ready(function () {
 
     function buttonGenerator(answer) {
         for (i = 0; i < answer.length; i++) {
-            var btn = $("<button>").addClass("btn answer-button");
+            var btn = $("<button>").addClass("btn btn-primary btn-lg btn-block answer-button");
             btn.text(answer[i]);
+            
             display.append(btn);
-            display.append("<br>");
+           
+
+
         }
         buttonLogic(correctAnswer[y]);
         y++;
@@ -138,9 +144,10 @@ $(document).ready(function () {
 
         gameEnd = true;
         display.empty();
-
-        display.append("<h1>").text("das it boi you scored " + currentScore + " points");
+        timer.empty();
+        cardText.text("You Scored: " + currentScore + " points!");
         display.append("<form>").attr("id", "high-score-input");
+
         var form = $("#high-score-input");
         form.append("<input type='text' id='initials'>");
         form.append("<input type='submit' id='submit-btn'>");
