@@ -90,7 +90,7 @@ $(document).ready(function () {
 
     function buttonGenerator(answer) {
         for (i = 0; i < answer.length; i++) {
-            var btn = $("<button>").addClass("btn btn-primary btn-lg btn-block answer-button");
+            var btn = $("<button>").addClass("btn btn-dark btn-lg btn-block answer-button");
             btn.text(answer[i]);
             
             display.append(btn);
@@ -115,15 +115,20 @@ $(document).ready(function () {
                 currentScore += 10;
                 feedback.append("<hr>");
                 feedback.append("<h3>").text("correct!");
-
+                feedback.append("<br><iframe src='https://giphy.com/embed/3oKIPbWfx4F4rFbDgI' width='350' height='auto' frameBorder='0' class='giphy-embed' allowFullScreen></iframe>");
+                
+                feedback.animate({ opacity: "0.00" }, 5000);
+                
                 nextQuestion()
             } else {
                 timeLeft -= 10;
                 timer.text(timeLeft)
-                feedback.prepend("<br> <hr> <h3>").text("wrong!");
+                feedback.prepend("<hr> <h3>").text("wrong!");
+                feedback.append("<br><iframe src='https://giphy.com/embed/jTqnyfhLvq9GfKZ43g' width='350' height='auto' frameBorder='0' class='giphy-embed' allowFullScreen></iframe>");
                 nextQuestion();
+                feedback.animate({ opacity: "0.00" }, 5000);
+
             }
-            feedback.animate({ opacity: "0.00" }, 1050);
         });
     };
 
@@ -141,7 +146,6 @@ $(document).ready(function () {
     };
 
     function renderFinalScene() {
-
         gameEnd = true;
         display.empty();
         timer.empty();
@@ -149,46 +153,65 @@ $(document).ready(function () {
         display.append("<form>").attr("id", "high-score-input");
 
         var form = $("#high-score-input");
-        form.append("<input type='text' id='initials'>");
+        form.append("<input type='text' id='initials' pattern='[A-Z]{3}' onkeyup='this.value = this.value.toUpperCase();'>");
         form.append("<input type='submit' id='submit-btn'>");
-        saveHighScore();
+        submitHighScore();
+        
     };
 
+    
+    function submitHighScore() {
+        
+        $("#submit-btn").on("click", function () {
+            var currentInitials = $("#initials").val();
+            console.log(currentInitials);
+           
+
+            if (currentInitials.length > 3 || currentInitials.length === 0){
+                
+                alert("You must enter up to 3 letters");
+                return;
+            } else {
+                
+                var items = {};
+                items.initials = currentInitials;
+                items.score = currentScore;
+                
+                highScores.push(items);
+                
+                console.log(highScores);
+                storeHigScores();
+                $("#high-score-input").empty();
+                $("#high-score-input").append("<h5>thank you!")
+
+            }
+        });
+        
+    };
+
+    
     function storeHigScores(){
         localStorage.setItem("highScores", JSON.stringify(highScores));
     };
-
-    function saveHighScore() {
-
-        $("#submit-btn").on("click", function () {
-            var items = {};
-            var currentInitials = $("#initials").val();
-
-            items.initials = currentInitials;
-            items.score = currentScore;
-
-            highScores.push(items);
-
-            console.log(highScores);
-            storeHigScores();
-        });
-
-    };
-
     
 
     function renderHighScores (){
         var storedHigScores = JSON.parse(localStorage.getItem("highScores"));
+        var num = 1;
         if (storedHigScores !== null){
             
             highScores = storedHigScores;
             for (i = 0; i < highScores.length; i++){
-                $("#display2").append("<h1>Initials: " + highScores[i].initials + " Score: " + highScores[i].score).addClass("stored-scores");
-                var savedScores = $(".stored-scores");
-                // savedScores.text("Initials: " + highScores[i].initials + "Score: " + highScores[i].score );
+                var newRow = $("<tr>");
+                newRow.append($("<td>").text([num]));
+                newRow.append($("<td>").text(highScores[i].initials));
+                newRow.append($("<td>").text(highScores[i].score));
+                $("tbody").append(newRow);
+                num++;
             };
         };
     };
+
     renderHighScores ();
     console.log(highScores);
 });

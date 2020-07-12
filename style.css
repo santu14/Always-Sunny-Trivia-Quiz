@@ -1,0 +1,21 @@
+body {
+    background-image: url("https://pbs.twimg.com/media/EUZbHlbUEAANCyD.jpg");
+    background-color: rgb(148, 158, 1);
+    height: 100%;
+
+  /* Center and scale the image nicely */
+  
+  background-repeat: no-repeat;
+  background-size: cover;
+    
+}
+
+.btn {
+    background-color: rgb(255, 227, 68);
+    color: dimgray;
+}
+table, th, td {
+    
+    border-collapse: collapse;
+    width: 55x;
+  }
