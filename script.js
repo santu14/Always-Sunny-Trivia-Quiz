@@ -115,7 +115,7 @@ $(document).ready(function () {
                 currentScore += 10;
                 feedback.append("<hr>");
                 feedback.append("<h3>").text("correct!");
-                feedback.append("<br><iframe src='https://giphy.com/embed/3oKIPbWfx4F4rFbDgI' width='350' height='auto' frameBorder='0' class='giphy-embed' allowFullScreen></iframe>");
+                feedback.append("<br><iframe src='https://giphy.com/embed/3oKIPbWfx4F4rFbDgI' width='350' height='auto' frameBorder='0' ></iframe>");
                 
                 feedback.animate({ opacity: "0.00" }, 5000);
                 
