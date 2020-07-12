@@ -23,7 +23,7 @@ $(document).ready(function () {
         "Dennis",
         "frank",
         "coaching youth basketball",
-        "Clown Babay"
+        "Clown Baby"
     ];
 
 
@@ -181,8 +181,11 @@ $(document).ready(function () {
                 
                 console.log(highScores);
                 storeHigScores();
-                $("#high-score-input").empty();
-                $("#high-score-input").append("<h5>thank you!")
+                var inputSpace = $("#high-score-input");
+                inputSpace.empty();
+                inputSpace.append("<h5>thank you!")
+                inputSpace.append("<a href='index.html' class='btn btn-primary  '>Try again</a></button>");
+                
 
             }
         });
