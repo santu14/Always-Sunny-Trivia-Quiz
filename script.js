@@ -9,20 +9,20 @@ $(document).ready(function () {
         "What is the alias that Dennis comes up with for Charlie, when he and Mac are entering him into the underground fight tournament?"
     ];
     var choices = [
-        { set: ["No tequila", "No liquor", "3 drink maximum", "12pm curfew"] },
+        { set: ["No Tequila", "No Liquor", "3 Drink Maximum", "12PM Curfew"] },
         { set: ["Charlie", "Dee", "Mac", "Rickety Cricket"] },
         { set: ["Dennis", "Dee", "Mac", "Frank"] },
-        { set: ["Carmen", "Liam McPoyle", "frank", "Artemis"] },
-        { set: ["coaching youth basketball", "Blood Drive", "Neighborhood Watch", "Volunteer at a soup kitchen"] },
+        { set: ["Carmen", "Liam McPoyle", "Frank", "Artemis"] },
+        { set: ["Coaching youth basketball", "Blood Drive", "Neighborhood Watch", "Volunteer at a soup kitchen"] },
         { set: ["Baby Boy", "Clown Face", "Baby Face", "Clown Baby"] }
     ];
 
     var correctAnswer = [
-        "3 drink maximum",
+        "3 Drink Maximum",
         "Charlie",
         "Dennis",
-        "frank",
-        "coaching youth basketball",
+        "Frank",
+        "Coaching youth basketball",
         "Clown Baby"
     ];
 
@@ -71,6 +71,7 @@ $(document).ready(function () {
 
     $(".start-btn").on("click", function () {
         gameEnd = false;
+        $("#image").empty();
         nextQuestion();
         countdown();
     });
