@@ -1,5 +1,6 @@
 # Always Sunny Trivia!
-An Always Sunny in Philadelphi trivia game created with JavaScript, jQuery, HTML, and CSS using local storage to keep high scores.
+Always Sunny in Philadelphia trivia game! 
+this trivia game was created with JavaScript, jQuery, HTML, and CSS using local storage to keep high scores.
 
 ## How to play
  - Simply press start to begin the game.
@@ -9,3 +10,4 @@ An Always Sunny in Philadelphi trivia game created with JavaScript, jQuery, HTML
  - final score will be a combination of qustions answered correctly and final time remaining.
  - Save your high score and dont forget to have fun!
  
+# Demo
