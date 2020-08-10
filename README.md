@@ -11,3 +11,4 @@ this trivia game was created with JavaScript, jQuery, HTML, and CSS using local 
  - Save your high score and dont forget to have fun!
  
 # Demo
+![trivia-Demo](assets/trivia.gif)
